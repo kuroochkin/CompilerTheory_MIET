@@ -90,7 +90,7 @@ public class FiniteStateMachine
 
     public bool AnalyzeInput(string input)
     {
-        var currentStates = new HashSet<string> { "q0" }; // Начальное состояние
+        var currentStates = new HashSet<string> { _allStates.First() };
 
         foreach (var symbol in input)
         {
@@ -111,95 +111,3 @@ public class FiniteStateMachine
         return currentStates.Any(state => _finalStates.Contains(state));
     }
 }
-
-
-// public class FiniteStateMachine
-// {
-//     private readonly List<Transition> _transitions = new List<Transition>();
-//     private readonly HashSet<string> _finalStates = new HashSet<string>();
-//
-//     public void AddTransition(string fromState, char symbol, string toState)
-//     {
-//         _transitions.Add(new Transition(fromState, symbol, toState));
-//     }
-//
-//     public void AddFinalState(string state)
-//     {
-//         _finalStates.Add(state);
-//     }
-//
-//     public List<Transition> GetTransitions() => _transitions;
-//
-//     public HashSet<string> GetFinalStates() => _finalStates;
-//
-//     public HashSet<string> GetAllStates()
-//     {
-//         var states = new HashSet<string>();
-//         foreach (var transition in _transitions)
-//         {
-//             states.Add(transition.FromState);
-//             states.Add(transition.ToState);
-//         }
-//         return states;
-//     }
-//     
-//     public bool IsDeterministic()
-//      {
-//          var groupedTransitions = _transitions
-//              .GroupBy(t => new { t.FromState, t.Symbol })
-//              .Where(g => g.Count() > 1)
-//              .Select(g => g.Key);
-//
-//          return !groupedTransitions.Any();
-//      }
-//
-//     private Dictionary<string, Dictionary<char, string>> GetTransitionTable()
-//     {
-//         var table = new Dictionary<string, Dictionary<char, string>>();
-//         
-//         foreach (var transition in _transitions)
-//         {
-//             if (!table.ContainsKey(transition.FromState))
-//             {
-//                 table[transition.FromState] = new Dictionary<char, string>();
-//             }
-//
-//             table[transition.FromState][transition.Symbol] = transition.ToState;
-//         }
-//
-//         return table;
-//     }
-//
-//     public void PrintTransitionTable()
-//     {
-//         var transitionTable = GetTransitionTable();
-//         var allStates = GetAllStates();
-//         var symbols = _transitions.Select(t => t.Symbol).Distinct().OrderBy(c => c).ToList();
-//
-//         Console.WriteLine("Transition Table:");
-//         Console.Write("State\t");
-//         foreach (var symbol in symbols)
-//         {
-//             Console.Write($"\t{symbol}");
-//         }
-//         Console.WriteLine();
-//
-//         foreach (var state in allStates)
-//         {
-//             Console.Write($"{state}\t");
-//             foreach (var symbol in symbols)
-//             {
-//                 if (transitionTable.TryGetValue(state, out var stateTransitions) &&
-//                     stateTransitions.TryGetValue(symbol, out var toState))
-//                 {
-//                     Console.Write($"\t{toState}");
-//                 }
-//                 else
-//                 {
-//                     Console.Write("\t-");
-//                 }
-//             }
-//             Console.WriteLine();
-//         }
-//     }
-// }
