@@ -1,0 +1,10 @@
+﻿q0,a=q1
+q0,b=q2
+q0,a=q3
+q1,b=q2
+q1,b=q1
+q1,n=f0
+q2,k=q1
+q2,k=q3
+q2,h=f0
+q3,m=f0
