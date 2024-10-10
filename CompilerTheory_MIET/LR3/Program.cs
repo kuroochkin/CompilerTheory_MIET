@@ -6,7 +6,7 @@ namespace LR3
     {
         static void Main(string[] args)
         {
-            string grammarFilePath = "D:\\proga\\CompilerTheory_MIET\\CompilerTheory_MIET\\LR3\\test2.txt";
+            string grammarFilePath = "D:\\proga\\CompilerTheory_MIET\\CompilerTheory_MIET\\LR3\\test1.txt";
             Grammar grammar = null;
 
             try

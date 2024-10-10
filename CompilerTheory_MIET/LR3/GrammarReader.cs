@@ -37,8 +37,8 @@ namespace LR3
                     // Убедитесь, что правые части могут содержать буквы и цифры
                     foreach (char c in production)
                     {
-                        if (!char.IsUpper(c) && !char.IsLower(c) && !char.IsDigit(c))
-                            throw new Exception($"Некорректный символ в правой части: {c}");
+                        // if (!char.IsUpper(c) && !char.IsLower(c) && !char.IsDigit(c))
+                        //     throw new Exception($"Некорректный символ в правой части: {c}");
                     }
 
                     // Учитываем, что символы '>' после первого трактуются как терминальные

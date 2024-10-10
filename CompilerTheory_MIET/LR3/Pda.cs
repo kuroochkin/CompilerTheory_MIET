@@ -102,7 +102,7 @@ namespace LR3
         /// Проверяет, допустима ли строка для данного PDA.
         /// Возвращает цепочку конфигураций и заключение о допустимости.
         /// </summary>
-       public (bool isAccepted, List<Configuration> configChain) ValidateString(string input)
+        public (bool isAccepted, List<Configuration> configChain) ValidateString(string input)
         {
             Stack<char> initialStack = new Stack<char>();
             initialStack.Push(_grammar.StartSymbol);
@@ -155,9 +155,10 @@ namespace LR3
 
                     if (!string.IsNullOrEmpty(transition.StackPush))
                     {
-                        for (int i = transition.StackPush.Length - 1; i >= 0; i--)
+                        // Добавляем символы в стек в порядке их следования
+                        foreach (var symbol in transition.StackPush)
                         {
-                            newConfig.Stack.Push(transition.StackPush[i]); // Добавляем символы в стек
+                            newConfig.Stack.Push(symbol);
                         }
                     }
 
